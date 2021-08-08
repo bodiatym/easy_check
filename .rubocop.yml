@@ -29,3 +29,12 @@ AllCops:
     - db/**/*
     - app/queries/**/*
     - db/schema.rb
+
+# Check with yard instead.
+Style/Documentation:
+  Enabled: false
+
+# Create separate methods/services to be used within block
+Metrics/BlockLength:
+  Exclude:
+    - 'spec/**/*'

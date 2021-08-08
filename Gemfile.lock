@@ -90,6 +90,10 @@ GEM
       descendants_tracker (~> 0.0.1)
     concurrent-ruby (1.1.9)
     crass (1.0.6)
+    database_cleaner-active_record (2.0.1)
+      activerecord (>= 5.a)
+      database_cleaner-core (~> 2.0.0)
+    database_cleaner-core (2.0.1)
     descendants_tracker (0.0.4)
       thread_safe (~> 0.3, >= 0.3.1)
     devise (4.8.0)
@@ -330,6 +334,7 @@ DEPENDENCIES
   bullet
   byebug
   capybara (>= 3.26)
+  database_cleaner-active_record
   devise
   factory_bot
   jbuilder (~> 2.7)
