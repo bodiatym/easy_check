@@ -1,0 +1,59 @@
+<header>
+  <br>
+  <nav class="navbar navbar-expand-lg navbar-light">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#">Questions</a>
+      <div class="text=right">
+        <a href="questions/new" class ="btn btn-outline-primary">Add question</a>
+      </div>    
+    </div>
+  </nav>
+  <br>
+  <head>
+    <div class="container">
+      <form class="d-flex">
+        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+        <button class="btn btn-outline-secondary me-md-2" type="submit">Reset</button>
+        <button class="btn btn-outline-success" type="submit">Search</button>
+      </form>
+    </div>
+</header>
+<br>
+<body>
+  <table class="table table-bordered table-hover">
+    <thead>
+      <tr class="active" style="background-color: gray">
+        <th>Name</th>
+        <th>Type</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>1 Question</td>
+        <td>1 Type</td>
+        <td>
+          <%= link_to 'Show', questions_show_path %>
+          <%= link_to 'Edit', questions_edit_path %>
+          <%= link_to 'Remove', questions_path(@questions), method: :delete, data: {confirm: "Are you sure?"} %>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</body>
+<footer>
+  <br>
+  <nav aria-label="Page navigation example">
+    <ul class="pagination justify-content-center">
+      <li class="page-item disabled">
+        <a class="page-link" href="#" tabindex="-1" aria-disabled="true"><<</a>
+      </li>
+      <li class="page-item"><a class="page-link" href="#">1</a></li>
+      <li class="page-item"><a class="page-link" href="#">2</a></li>
+      <li class="page-item"><a class="page-link" href="#">3</a></li>
+      <li class="page-item">
+        <a class="page-link" href="#">>></a>
+      </li>
+    </ul>
+  </nav>
+</footer>
