@@ -1,0 +1,33 @@
+<%= f.fields_for 'answers_attributes[]', @question.answers.build do |answer| %>
+  <p> Your answer </p>
+  
+  <div class="form-group">
+    <div class="inline-block">
+      <%= answer.text_field 'body',
+                        class: "form-control mt-10",
+                        placeholder: 'Your answer',
+                        autofocus: true %>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <div class="inline-block">
+        <%= answer.text_field 'body',
+                          class: "form-control mt-10",
+                          placeholder: 'Your answer',
+                          autofocus: true %>
+
+    </div>
+
+        <%= link_to 'Remove answer',
+            new_question_path(answers_count: 1),
+            class: 'btn btn-danger btn-sm'%>
+  </div>
+
+  <div class="form-group">
+    <%= link_to "Add one more answer",
+        new_question_path(answers_count: 3), 
+        method: :get,
+        class: 'btn btn-primary btn-sm mt-mb-20' %>
+  </div>
+<% end %>
