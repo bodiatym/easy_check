@@ -1,9 +1,17 @@
 # frozen_string_literal: true
 
 class QuestionsController < BaseController
+  def index
+    @questions = Question.all
+  end
+
   def new
     @question = Question.new(answers_count: 1)
     @question.assign_attributes(answers_count: params[:answers_count].to_i)
+  end
+
+  def show
+   @question = Question.find(params[:id])
   end
 
   def create
@@ -12,7 +20,18 @@ class QuestionsController < BaseController
     render :show
   end
 
-  def destroy; end
+  def edit
+   @question = Question.find(params[:id])
+  end
+
+  def update
+    Questions::Update.call(question, question_params)
+  end
+
+  def destroy
+    Questions::Destroy.call(question)
+  end
+
 
   private
 
