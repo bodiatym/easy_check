@@ -1,0 +1,27 @@
+<div class="form-group">
+  <%= f.label :question, value: 'Question' %>
+  <%= f.text_field :body, class: "form-control mb-20" %>
+
+  <div class='form-group'>
+    <select class="form-select mb-20" name='question[answer_type]'>
+      <option value="single"><%= Question.answer_types[:single] %></option>
+      <option value="multiple"><%= Question.answer_types[:multiple] %></option>
+      <option value="text"><%= Question.answer_types[:text] %></option>
+    </select>
+
+  <div id='answer-fields'>
+    <% if @question.answers_count == 1 %>
+      <%= render partial: 'single_answer', locals: { f: f } %>
+    <% elsif @question.answers_count == 2 %>
+      <%= render partial: 'double_answer', locals: { f: f } %>
+    <% elsif @question.answers_count == 3 %>
+      <%= render partial: 'tripple_answer', locals: { f: f } %>
+    <% else %>
+      <%= render partial: 'single_answer', locals: { f: f } %>
+    <% end %>
+  </div>
+
+  <div class="form-group">
+    <%= f.submit 'Create', class: "btn btn-success btn-sm mt-10", data: {disable_with: 'wait...'} %>
+  </div>
+</div>
