@@ -1,0 +1,11 @@
+<div class="card mb-3" id="question-<%= question.id %>">
+  <div class="card-body">
+    <h5 class="card-title">
+      <small>
+      <%= question.body %>
+      <small>
+        | <%= link_to 'Delete', question, method: :delete_question %>
+      </small>
+    </h5>
+  </div>
+</div>
