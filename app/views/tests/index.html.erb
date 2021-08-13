@@ -1,0 +1,18 @@
+<div class="row">
+ <div class="col-md-6">
+    <h4>
+      <strong>
+        Tests count: <%= @tests.count %>
+      </strong>
+    </h4>
+
+    <hr>
+
+    <%= render partial: 'tests/test_preview', collection: @tests, as: :test %>
+    
+    <h6>
+  <strong>
+  <%= link_to 'Create New', new_test_path, class: 'card-link'%>
+  </strong>
+    </h6>
+  </div>

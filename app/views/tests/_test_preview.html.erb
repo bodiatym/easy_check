@@ -1,0 +1,14 @@
+<div class="card mb-3" id="test-<%= test.id %>">
+  <div class="card-body">
+    <h5 class="card-title">
+      </strong>
+      <%= test.name %>
+      <small>
+        | <%= link_to 'Edit', edit_test_path(test.id), class: 'card-link'%>
+      </small>
+      <small>
+        | <%= link_to 'Delete', test, method: :delete %>
+      </small>
+    </h5>
+  </div>
+</div>
