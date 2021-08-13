@@ -2,7 +2,8 @@
 
 class Question < ApplicationRecord
   has_many :answers, dependent: :destroy
-  has_and_belongs_to_many :tests
+  has_many :questions_tests, dependent: :nullify
+  has_many :tests, through: :questions_tests
 
   belongs_to :user
 
