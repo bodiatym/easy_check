@@ -1,11 +1,8 @@
-<h3 class='inline-block'>New question</h3> <button type="button" class="btn btn-secondary back-button">Back</button>
+<h3 class='inline-block'>New question</h3> 
+<a href="/questions", class="btn btn-secondary back-button">Back</a>
 
 <div class="mt-40">
-  <%= form_for(@question, url: questions_path, html: {role: "form"}) do |form|%>
+  <%= form_for(@question, html: {role: "form"}) do |form|%>
     <%= render partial: 'form_fields', locals: {f: form} %>
-
-    <div class="form-group">
-      <%= form.submit 'Create', class: "btn btn-success btn-sm", data: {disable_with: 'wait...'} %>
-    </div>
   <% end %>
 </div>

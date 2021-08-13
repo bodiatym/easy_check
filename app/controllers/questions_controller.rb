@@ -1,8 +1,10 @@
 # frozen_string_literal: true
 
 class QuestionsController < BaseController
+  before_action :question, only: %i[show edit]
+
   def index
-    @questions = Question.all
+    @pagy, @questions = pagy Question.order(created_at: :desc)
   end
 
   def new
@@ -10,28 +12,35 @@ class QuestionsController < BaseController
     @question.assign_attributes(answers_count: params[:answers_count].to_i)
   end
 
-  def show
-   @question = Question.find(params[:id])
-  end
+  def show; end
 
   def create
-    Questions::Create.new(question_params, current_user).call
-
-    render :show
+    if Questions::Create.new(question_params, current_user).call
+      redirect_to questions_path
+    else
+      render :new
+    end
   end
 
   def edit
-   @question = Question.find(params[:id])
+    render :new
   end
 
   def update
-    Questions::Update.call(question, question_params)
+    if Questions::Update.new(question, question_params).call
+      redirect_to questions_path
+    else
+      render :edit
+    end
   end
 
   def destroy
-    Questions::Destroy.call(question)
+    if Questions::Destroy.new(question).call
+      redirect_to questions_path
+    else
+      render status: :forbidden
+    end
   end
-
 
   private
 
@@ -39,5 +48,9 @@ class QuestionsController < BaseController
     params.require(:question).permit(
       :body, :answer_type, :answers_count, answers_attributes: %i[body]
     )
+  end
+
+  def question
+    @question ||= Question.find(params[:id])
   end
 end
