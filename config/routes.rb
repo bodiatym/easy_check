@@ -8,4 +8,5 @@ Rails.application.routes.draw do
   get '/home' => 'static_pages#home'
 
   resources :questions
+  resources :tests
 end
