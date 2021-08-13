@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class TestAssignmentsController < ApplicationController
+class TestAssignmentsController < BaseController
   helper_method :tests
 
   def index
