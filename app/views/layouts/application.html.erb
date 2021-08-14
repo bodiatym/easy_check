@@ -12,6 +12,26 @@
   </head>
 
   <body>
+      <header>
+        <nav class="navbar">
+          <div class="container-fluid">
+            <a class="navbar-brand" href="<%= root_path %>">
+              <img src="<%= asset_path('logo2.jpeg') %>" width="30" height="24" class="d-inline-block align-text-top">
+              Easy Check
+            </a>
+            <ul class="nav justify-content-center nav-pills">
+              <li class="nav-item">
+                <a class="nav-link" href="<%= new_user_session_path %>">Sign in</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="<%= new_user_registration_path %>">Sign up</a>
+              </li>
+            </ul>
+          </div>
+        </nav>
+        <br>
+      </header>
+    </div>
     <div class="container">
       <%= yield %>
     </div>

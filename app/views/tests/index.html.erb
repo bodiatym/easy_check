@@ -11,8 +11,14 @@
     <%= render partial: 'tests/test_preview', collection: @tests, as: :test %>
     
     <h6>
-  <strong>
-  <%= link_to 'Create New', new_test_path, class: 'card-link'%>
-  </strong>
+      <strong>
+      <%= link_to 'Create New', new_test_path, class: 'card-link'%>
+      </strong>
     </h6>
+  </div>  
+</div>
+<footer>
+  <div class="pagination justify-content-center">
+    <%== pagy_bootstrap_nav @pagy %>
   </div>
+</footer>
