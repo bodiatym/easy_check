@@ -2,7 +2,7 @@
 
 class TestsController < ApplicationController
   def index
-    @tests = current_user.tests.reverse
+    @pagy, @tests = pagy(Test.order(created_at: :desc))
     @users = User.all.except(current_user)
   end
 
@@ -10,16 +10,20 @@ class TestsController < ApplicationController
     test = Tests::Create.call(test_params)
 
     if test.persisted?
-      redirect_to root_path,
+      redirect_to tests_path,
                   flash: { notice: 'Test was successfully created.' }
     else
-      redirect_to root_path,
+      redirect_to new_test_path,
                   flash: { error: test.errors.full_messages.to_sentence }
     end
   end
 
   def destroy
-    Tests::Destroy.call(test)
+    if Tests::Destroy.call(test)
+      redirect_to tests_path
+    else
+      render status: :forbidden
+    end
   end
 
   private
