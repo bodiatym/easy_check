@@ -33,4 +33,8 @@ class TestAssignmentsController < BaseController
   def tests
     @tests ||= Test.where(user_id: current_user.id).last(20)
   end
+
+  def test_assignment
+    @test_assignment = TestAssignment.find(params[:id])
+  end
 end
