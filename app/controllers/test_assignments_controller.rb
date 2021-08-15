@@ -1,10 +1,13 @@
 # frozen_string_literal: true
 
-class TestAssignmentsController < BaseController
+class TestAssignmentsController < ApplicationController
   helper_method :tests
 
   def index
     @pagy, @test_assignments = pagy(test_assignments)
+  end
+
+  def show
   end
 
   def new

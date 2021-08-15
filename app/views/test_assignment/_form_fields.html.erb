@@ -1,0 +1,9 @@
+<div id='answer-fields'>
+  <% if @question.answers_type == "Single-choice" %>
+    <%= render partial: 'text_answer' %>
+  <% elsif @question.answers_type == [:multiple] %>
+    <%= render partial: 'multiple_answer' %>
+  <% else %>
+    <%= render partial: 'single_answer' %>
+  <% end %> 
+</div>
