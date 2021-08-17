@@ -3,6 +3,7 @@
 class TestsController < ApplicationController
   def index
     @pagy, @tests = pagy(Test.order(created_at: :desc))
+    @tests = current_user.tests.order(created_at: :desc)
     @users = User.all.except(current_user)
   end
 

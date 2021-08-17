@@ -1,0 +1,7 @@
+<h3 class='inline-block'>New test assignment</h3>
+
+<div class="mt-40">
+  <%= form_for(@test_assignment, url: test_assignments_path, html: {role: "form"}) do |form|%>
+    <%= render partial: 'form_fields', locals: {f: form} %>
+  <% end %>
+</div>
