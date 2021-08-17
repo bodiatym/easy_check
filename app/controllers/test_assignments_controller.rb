@@ -8,7 +8,8 @@ class TestAssignmentsController < BaseController
   end
 
   def create
-    TestAssignments::Create.new(test_assignment_params).call
+    test_assignment = TestAssignments::Create.new(test_assignment_params).call
+    TestAssignmentMailer.test_assignment_email(test_assignment.id).deliver
   end
 
   private

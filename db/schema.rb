@@ -10,11 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-<<<<<<< HEAD
 ActiveRecord::Schema.define(version: 2021_08_13_121820) do
-=======
-ActiveRecord::Schema.define(version: 2021_08_13_154332) do
->>>>>>> add test_assignment_mailer
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -44,9 +40,9 @@ ActiveRecord::Schema.define(version: 2021_08_13_154332) do
     t.string "assignee_email", null: false
     t.string "expiration_time", null: false
     t.bigint "test_id"
-    t.index ["test_id"], name: "index_test_assignments_on_test_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["test_id"], name: "index_test_assignments_on_test_id"
   end
 
   create_table "tests", force: :cascade do |t|
@@ -65,7 +61,6 @@ ActiveRecord::Schema.define(version: 2021_08_13_154332) do
     t.datetime "remember_created_at"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-
     t.string "confirmation_token"
     t.datetime "confirmed_at"
     t.datetime "confirmation_sent_at"
