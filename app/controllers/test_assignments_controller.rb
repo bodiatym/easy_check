@@ -35,6 +35,10 @@ class TestAssignmentsController < BaseController
   end
 
   def test_assignment
-    @test_assignment = TestAssignment.find(params[:id])
+    @test_assignment ||= TestAssignment.find(params[:id])
+  end
+
+  def questions
+    @questions = test_assignment.test.questions.includes(:answers)
   end
 end

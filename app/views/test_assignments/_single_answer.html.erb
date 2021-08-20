@@ -1,0 +1,29 @@
+<div class="container text-center">  
+  <h1><%= @test_assignment.test.name%></h1>
+  <br>
+</div>
+
+<div class="row">
+  <div class="col-md-6">
+    <br>
+    <div>
+      <% @questions.each do |question| %><br>
+      <h4>
+        <strong>
+          <%= question.body %>
+        </strong>
+        <% question.answers.each do |answer| %>
+          <% if question.answer_type = 'single' %>
+            <input type="radio" name="answer"> <% answer.body %>
+          <% elsif question.answer_type = 'multiple' %>
+           <input type="checkbox"><% answer.body %>
+          <% else %>
+            <textarea rows="5" cols="50">
+            </textarea>
+          <% end %>
+        <% end %>
+      </h4>
+      <% end %>
+    </div>
+  </div>
+</div>
