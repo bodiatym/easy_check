@@ -11,7 +11,7 @@
 # It's strongly recommended that you check this file into your version control system.
 
 
-ActiveRecord::Schema.define(version: 2021_08_20_155438) do
+ActiveRecord::Schema.define(version: 2021_08_20_162023) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -21,6 +21,11 @@ ActiveRecord::Schema.define(version: 2021_08_20_155438) do
     t.string "body"
     t.bigint "question_id"
     t.index ["question_id"], name: "index_answer_options_on_question_id"
+  end
+
+  create_table "answer_options_assignee_answers", force: :cascade do |t|
+    t.bigint "assignee_answer_id", null: false
+    t.bigint "answer_option_id", null: false
   end
 
   create_table "answers", force: :cascade do |t|

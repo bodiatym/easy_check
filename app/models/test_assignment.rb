@@ -2,7 +2,7 @@
 
 class TestAssignment < ApplicationRecord
   belongs_to :test
-  has_many :assignee_answers
+  has_many :assignee_answers, dependent: :destroy
 
   validates :assignee_email, presence: true
   validates :expiration_time, presence: true
