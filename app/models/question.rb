@@ -5,6 +5,7 @@ class Question < ApplicationRecord
   has_many :questions_tests, dependent: :nullify
   has_many :tests, through: :questions_tests
   has_many :assignee_answers
+  has_many :answer_options
 
   belongs_to :user
 
