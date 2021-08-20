@@ -10,11 +10,8 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-<<<<<<< HEAD
-ActiveRecord::Schema.define(version: 2021_08_22_094352) do
-=======
-ActiveRecord::Schema.define(version: 2021_08_15_181152) do
->>>>>>> T-13: test assignment page
+
+ActiveRecord::Schema.define(version: 2021_08_20_151336) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -23,6 +20,16 @@ ActiveRecord::Schema.define(version: 2021_08_15_181152) do
     t.string "body", null: false
     t.bigint "question_id"
     t.index ["question_id"], name: "index_answers_on_question_id"
+  end
+
+  create_table "assignee_answers", force: :cascade do |t|
+    t.integer "answer_option"
+    t.text "body"
+    t.integer "value"
+    t.bigint "test_assignment_id"
+    t.bigint "question_id"
+    t.index ["question_id"], name: "index_assignee_answers_on_question_id"
+    t.index ["test_assignment_id"], name: "index_assignee_answers_on_test_assignment_id"
   end
 
   create_table "questions", force: :cascade do |t|
@@ -56,7 +63,7 @@ ActiveRecord::Schema.define(version: 2021_08_15_181152) do
     t.index ["user_id"], name: "index_tests_on_user_id"
   end
 
-   create_table "users", force: :cascade do |t|
+  create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
     t.string "reset_password_token"
@@ -71,6 +78,8 @@ ActiveRecord::Schema.define(version: 2021_08_15_181152) do
   end
 
   add_foreign_key "answers", "questions"
+  add_foreign_key "assignee_answers", "questions"
+  add_foreign_key "assignee_answers", "test_assignments"
   add_foreign_key "questions", "users"
   add_foreign_key "test_assignments", "tests"
   add_foreign_key "tests", "users"
