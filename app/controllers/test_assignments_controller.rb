@@ -1,7 +1,9 @@
 # frozen_string_literal: true
 
 class TestAssignmentsController < BaseController
-  helper_method :tests
+  helper_method :tests, :test_assignment, :questions
+
+  LIST_LAST_USERS = 20
 
   def index
     @pagy, @test_assignments = pagy(test_assignments)
@@ -31,7 +33,7 @@ class TestAssignmentsController < BaseController
   end
 
   def tests
-    @tests ||= Test.where(user_id: current_user.id).last(20)
+    @tests ||= Test.where(user_id: current_user.id).last(LIST_LAST_USERS)
   end
 
   def test_assignment
@@ -39,6 +41,6 @@ class TestAssignmentsController < BaseController
   end
 
   def questions
-    @questions = test_assignment.test.questions.includes(:answers)
+    @questions ||= test_assignment.test.questions.includes(:answers)
   end
 end
