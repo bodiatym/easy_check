@@ -19,8 +19,6 @@ class TestAssignmentsController < BaseController
 
   private
 
-  PER_PAGE = 15
-
   def test_assignment_params
     params.require(:test_assignment).permit(:assignee_email, :expiration_time, :test_id)
   end
