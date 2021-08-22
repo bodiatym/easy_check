@@ -3,6 +3,11 @@
 class TestAssignmentsController < BaseController
   helper_method :tests
 
+  def index
+    @pagy, @test_assignments = pagy(TestAssignment.includes(:test)
+                                                  .where(tests: { user_id: current_user.id }))
+  end
+
   def new
     @test_assignment = TestAssignment.new
   end
@@ -13,6 +18,8 @@ class TestAssignmentsController < BaseController
   end
 
   private
+
+  PER_PAGE = 15
 
   def test_assignment_params
     params.require(:test_assignment).permit(:assignee_email, :expiration_time, :test_id)

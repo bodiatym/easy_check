@@ -1,0 +1,29 @@
+<h1>Test Assignments</h1>
+<table class="table table-bordered table-hover">
+  <thead>
+    <tr class="active" style="background-color: gray">
+      <th>Test name</th>
+      <th>Student email</th>
+      <th>Status</th>
+      <th>Sent link</th>
+      <th>Expiration time</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% test_assignments.each do |test_assignment| %>
+    <tr>
+      <td><%= test_assignment.test.name %></td>
+      <td><%= test_assignment.assignee_email %></td>
+      <td><%= test_assignment.status %></td>
+      <td><%= link_to 'Test', test_assignment_path(id: test_assignment.id) %></td>
+      <td><%= test_assignment.expiration_time %></td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<footer>
+  <div class="pagination justify-content-center">
+    <%== pagy_bootstrap_nav @pagy %> 
+   </div>
+</footer>
