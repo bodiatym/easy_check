@@ -35,6 +35,9 @@ class TestsController < ApplicationController
       test
       @questions = Question.all
     end
+    def show
+      redirect_to tests_path
+    end
 
   def destroy
     if Tests::Destroy.call(test)
@@ -44,10 +47,11 @@ class TestsController < ApplicationController
     end
   end
 
-  private
-
+    private
+  
   def test_params
-    params.require(:test).permit(:name, :user_id)
+      params.require(:test).permit(:name, :user_id, question_ids:[])
+
   end
 
   def test
