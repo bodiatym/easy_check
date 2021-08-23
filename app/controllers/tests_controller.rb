@@ -49,12 +49,12 @@ class TestsController < ApplicationController
 
     private
   
-  def test_params
-      params.require(:test).permit(:name, :user_id, question_ids:[])
+    def test_params
+      params.permit(:name, :user_id, question_ids:[])
+    end
 
-  end
+    def test
+        @test ||= Test.find(params[:id])
+    end
 
-  def test
-    @test = Test.find(params[:id])
-  end
 end

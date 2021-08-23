@@ -10,13 +10,10 @@
     <%= form.text_area :name, class: 'form-control', rows: 1 %>
     
     <%= form.label :question, 'Questions:', :class => "control-label" %><br>
-    <%= render partial: 'question_preview', collection: @test.questions, as: :question %>
+    <%= render partial: 'questions/question_preview', collection: @test.questions, as: :question %>
     <%= form.collection_check_boxes :question_ids,Question.all, :id, :body %>
    
     
-
-
-
     <div class="form-group">
       <%= form.submit 'Submit', class: "btn btn-success ", data: {disable_with: 'wait...'} %>
     </div>
