@@ -15,21 +15,21 @@
         <% question.answers.each do |answer| %>
           <% if question.answer_type == TestAssignment::SINGLE %>
             <div class="form-check">
-              <input class="form-check-input" type="radio" name="answer" id="answer.id">
-              <label class="form-check-label" for="answer.id">
+              <input class="form-check-input" type="radio" name="answer" id="answer_id">
+              <label class="form-check-label" for="answer_id">
                 <%= answer.body %>
               </label>
             </div>
           <% elsif question.answer_type == TestAssignment::MULTIPLE %>
             <div class="form-check">
-              <input class="form-check-input" type="checkbox" value="answer" id="answer.id">
-              <label class="form-check-label" for="answer.id">
+              <input class="form-check-input" type="checkbox" value="answer" id="answer_id">
+              <label class="form-check-label" for="answer_id">
                 <%= answer.body %>
               </label>
             </div>
           <% else %>
             <div class="mb-3">
-              <textarea class="form-control" id="answer.id" name="answer"></textarea>
+              <textarea class="form-control" id="answer_id" name="answer"></textarea>
             </div>
           <% end %>
         <% end %>
