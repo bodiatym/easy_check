@@ -4,8 +4,7 @@ class TestAssignmentsController < BaseController
   helper_method :tests
 
   def index
-    @pagy, @test_assignments = pagy(TestAssignment.includes(:test)
-                                                  .where(tests: { user_id: current_user.id }))
+    @pagy, @test_assignments = pagy(test_assignments)
   end
 
   def new
@@ -21,6 +20,11 @@ class TestAssignmentsController < BaseController
 
   def test_assignment_params
     params.require(:test_assignment).permit(:assignee_email, :expiration_time, :test_id)
+  end
+
+  def test_assignments
+    TestAssignment.includes(:test)
+                  .where(tests: { user_id: current_user.id })
   end
 
   def tests
