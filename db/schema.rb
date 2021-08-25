@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_08_13_121820) do
+ActiveRecord::Schema.define(version: 2021_08_24_184713) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -19,6 +19,13 @@ ActiveRecord::Schema.define(version: 2021_08_13_121820) do
     t.string "body", null: false
     t.bigint "question_id"
     t.index ["question_id"], name: "index_answers_on_question_id"
+  end
+
+  create_table "profiles", force: :cascade do |t|
+    t.string "first_name", default: "", null: false
+    t.string "last_name", default: "", null: false
+    t.bigint "user_id"
+    t.index ["user_id"], name: "index_profiles_on_user_id"
   end
 
   create_table "questions", force: :cascade do |t|
@@ -40,8 +47,7 @@ ActiveRecord::Schema.define(version: 2021_08_13_121820) do
     t.string "assignee_email", null: false
     t.string "expiration_time", null: false
     t.bigint "test_id"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.string "status", default: "sent"
     t.index ["test_id"], name: "index_test_assignments_on_test_id"
   end
 
@@ -59,8 +65,6 @@ ActiveRecord::Schema.define(version: 2021_08_13_121820) do
     t.string "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
     t.string "confirmation_token"
     t.datetime "confirmed_at"
     t.datetime "confirmation_sent_at"
@@ -70,6 +74,7 @@ ActiveRecord::Schema.define(version: 2021_08_13_121820) do
   end
 
   add_foreign_key "answers", "questions"
+  add_foreign_key "profiles", "users"
   add_foreign_key "questions", "users"
   add_foreign_key "test_assignments", "tests"
   add_foreign_key "tests", "users"
