@@ -5,6 +5,8 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby '3.0.1'
 
+gem 'dotenv-rails', require: 'dotenv/rails-now'
+
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails', branch: 'main'
 gem 'rails', '~> 6.1.4'
 # Use postgresql as the database for Active Record
@@ -35,7 +37,6 @@ gem 'pagy', '~> 4.10'
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'bullet'
-  gem 'dotenv-rails'
   gem 'pry'
   gem 'rspec-rails', '~> 5.0.0'
   gem 'rubocop', require: false
