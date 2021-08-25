@@ -1,0 +1,5 @@
+<%= form_for :users_profile, method: :patch do |f| %>
+  First name: <%= f.text_field :first_name %><br />
+  Last name : <%= f.text_field :last_name %><br />
+  <%= f.submit %>
+<% end %>

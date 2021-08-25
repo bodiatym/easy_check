@@ -88,11 +88,16 @@ ActiveRecord::Schema.define(version: 2021_08_24_184713) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
-  add_foreign_key "answer_options", "questions"
+  create_table "users_profiles", force: :cascade do |t|
+    t.string "first_name", default: "", null: false
+    t.string "last_name", default: "", null: false
+    t.bigint "user_id"
+    t.index ["user_id"], name: "index_users_profiles_on_user_id"
+  end
+
   add_foreign_key "answers", "questions"
-  add_foreign_key "assignee_answers", "questions"
-  add_foreign_key "assignee_answers", "test_assignments"
   add_foreign_key "questions", "users"
   add_foreign_key "test_assignments", "tests"
   add_foreign_key "tests", "users"
+  add_foreign_key "users_profiles", "users"
 end
