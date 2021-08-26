@@ -11,20 +11,14 @@
     "bootstrap": "^5.1.0",
     "jquery": "^3.6.0",
     "turbolinks": "^5.2.0",
-    "webpack": "^4.46.0",
+    "webpack": "^5.51.1",
     "webpack-cli": "^3.3.12"
   },
   "version": "0.1.0",
   "devDependencies": {
+    "@babel/core": "^7.15.0",
+    "@babel/preset-env": "^7.15.0",
+    "babel-loader": "^8.2.2",
     "webpack-dev-server": "^3.11.2"
-  },
-  "babel": {
-    "presets": [
-      "./node_modules/@rails/webpacker/package/babel/preset.js"
-    ],
-    "plugins": [
-      "@babel/plugin-proposal-class-properties",
-      "@babel/plugin-proposal-private-methods"
-    ]
- }
+  }
 }
