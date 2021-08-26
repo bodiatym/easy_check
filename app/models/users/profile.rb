@@ -2,11 +2,10 @@
 
 module Users
   class Profile < ApplicationRecord
-    self.table_name = "users_profiles"
+    self.table_name_prefix = 'users_'
 
     belongs_to :user
 
-    # validates :first_name, presence: true
-    # validates :last_name, presence: true
+    #validates_uniqueness_of :user_id
   end
 end

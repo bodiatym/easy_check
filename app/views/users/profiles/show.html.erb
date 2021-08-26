@@ -1,5 +1,11 @@
+<div class="container">
+  <h1>My profile</h1>
+</div>
+
 <%= form_for :users_profile, method: :patch do |f| %>
   First name: <%= f.text_field :first_name %><br />
-  Last name : <%= f.text_field :last_name %><br />
-  <%= f.submit %>
+  <br />
+  Last name : <%= f.text_field :last_name %><br /> 
+  <%= f.submit 'Save', class: "btn btn-primary btn-sm mt-10" %>
+  <%= link_to 'Change email and password', edit_user_registration_path, class: "btn btn-primary btn-sm mt-10" %>
 <% end %>

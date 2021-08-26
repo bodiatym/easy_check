@@ -41,7 +41,6 @@ class User < ApplicationRecord
   end
 
   def build_users_profile
-    binding.pry
     Users::Profile.create(user: self)
   end
 end

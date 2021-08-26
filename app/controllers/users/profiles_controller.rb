@@ -15,6 +15,7 @@ module Users
 
     def update
       @users_profile.update(users_profile_params)
+      redirect_to root_path
     end
 
     private
