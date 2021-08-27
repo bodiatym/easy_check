@@ -41,6 +41,6 @@ class TestAssignmentsController < BaseController
   end
 
   def questions
-    @questions ||= test_assignment.test.questions.includes(:answers)
+    @questions ||= test_assignment.test.questions.includes(:answer_options)
   end
 end

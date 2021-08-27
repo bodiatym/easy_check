@@ -31,11 +31,15 @@ class Question < ApplicationRecord
 
   accepts_nested_attributes_for :answers, allow_destroy: true
 
+  SINGLE = 'Single-choice'
+  MULTIPLE = 'Multiple-choice'
+  TEXT = 'Text'
+  
   enum answer_type: {
-    single: 'Single-choice',
-    multiple: 'Multiple-choice',
-    text: 'Text'
-  }
+    single: SINGLE,
+    multiple: MULTIPLE,
+    text: TEXT
+  }, _prefix: true
 
   validates :answer_type, presence: true
   validates :body, presence: true

@@ -3,39 +3,42 @@
   <br>
 </div>
 
-<div class="row">
-  <div class="col-md-6">
-    <br>
-    <div>
-      <% questions.each do |question| %><br>
+<div class="form-group">
+  <%= form_for(:answer_options_assignee_answers,
+                url: answer_options_assignee_answers_path,
+                method: :post,
+                html: { role: 'form'}) do |f| %>
+    <% questions.each do |question| %><br>
       <h4>
-        <strong>
-          <%= question.body %>
-        </strong>
-        <% question.answers.each do |answer| %>
-          <% if question.answer_type == TestAssignment::SINGLE %>
-            <div class="form-check">
-              <input class="form-check-input" type="radio" name="answer" id="answer_id">
-              <label class="form-check-label" for="answer_id">
-                <%= answer.body %>
-              </label>
-            </div>
-          <% elsif question.answer_type == TestAssignment::MULTIPLE %>
-            <div class="form-check">
-              <input class="form-check-input" type="checkbox" value="answer" id="answer_id">
-              <label class="form-check-label" for="answer_id">
-                <%= answer.body %>
-              </label>
-            </div>
-          <% else %>
-            <div class="mb-3">
-              <textarea class="form-control" id="answer_id" name="answer"></textarea>
-            </div>
+        <strong><%= question.body %></strong>
+        <% if question.answer_type_single? %>
+          <% question.answer_options.each do |answer_option| %>
+            <table>
+              <tr>
+                <td><%= f.radio_button ":answer_option[#{question.id}]", answer_option.id %></td>
+                <td><%= label :answer_option, answer_option.body %></td>
+              </tr>
+            </table>
           <% end %>
+        <% elsif question.answer_type_multiple? %>
+          <% question.answer_options.each do |answer_option| %>
+            <table>
+              <tr>
+                <td><%= f.check_box ":answer_option[#{question.id}]" %></td>
+                <td><%= label :answer_option, answer_option.body %></td>
+              </tr>
+            </table>
+          <% end %>
+        <% else %>
+          <div class="form-group">
+            <%= f.text_area(":text[#{question.id}]", sise: '50x10') %>
+          </div>
         <% end %>
       </h4>
-      <% end %>
-      <input type="submit" name="commit" value="Submit Test" data-disable-with="Submit Test">
+    <% end %>
+
+    <div  class="form-group">
+      <%= f.submit 'Submit', class: "btn btn-success bn-sm mt-10", data: {disable_with: 'wait...'} %>
     </div>
-  </div>
+  <% end %>
 </div>
