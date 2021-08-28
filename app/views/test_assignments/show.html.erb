@@ -1,0 +1,44 @@
+<div class="container text-center">  
+  <h1><%= test_assignment.test.name %></h1>
+  <br>
+</div>
+
+<div class="form-group">
+  <%= form_for(:answer_options_assignee_answers,
+                url: answer_options_assignee_answers_path,
+                method: :post,
+                html: { role: 'form'}) do |f| %>
+    <% questions.each do |question| %><br>
+      <h4>
+        <strong><%= question.body %></strong>
+        <% if question.answer_type_single? %>
+          <% question.answer_options.each do |answer_option| %>
+            <table>
+              <tr>
+                <td><%= f.radio_button ":answer_option[#{question.id}]", answer_option.id %></td>
+                <td><%= label :answer_option, answer_option.body %></td>
+              </tr>
+            </table>
+          <% end %>
+        <% elsif question.answer_type_multiple? %>
+          <% question.answer_options.each do |answer_option| %>
+            <table>
+              <tr>
+                <td><%= f.check_box ":answer_option[#{question.id}]" %></td>
+                <td><%= label :answer_option, answer_option.body %></td>
+              </tr>
+            </table>
+          <% end %>
+        <% else %>
+          <div class="form-group">
+            <%= f.text_area(":text[#{question.id}]", sise: '50x10') %>
+          </div>
+        <% end %>
+      </h4>
+    <% end %>
+
+    <div  class="form-group">
+      <%= f.submit 'Submit', class: "btn btn-success bn-sm mt-10", data: {disable_with: 'wait...'} %>
+    </div>
+  <% end %>
+</div>

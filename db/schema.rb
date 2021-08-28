@@ -10,15 +10,38 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_08_22_094352) do
+
+ActiveRecord::Schema.define(version: 2021_08_20_162023) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "answer_options", force: :cascade do |t|
+    t.boolean "correct"
+    t.string "body"
+    t.bigint "question_id"
+    t.index ["question_id"], name: "index_answer_options_on_question_id"
+  end
+
+  create_table "answer_options_assignee_answers", force: :cascade do |t|
+    t.bigint "assignee_answer_id", null: false
+    t.bigint "answer_option_id", null: false
+  end
 
   create_table "answers", force: :cascade do |t|
     t.string "body", null: false
     t.bigint "question_id"
     t.index ["question_id"], name: "index_answers_on_question_id"
+  end
+
+  create_table "assignee_answers", force: :cascade do |t|
+    t.integer "answer_option"
+    t.text "body"
+    t.integer "value"
+    t.bigint "test_assignment_id"
+    t.bigint "question_id"
+    t.index ["question_id"], name: "index_assignee_answers_on_question_id"
+    t.index ["test_assignment_id"], name: "index_assignee_answers_on_test_assignment_id"
   end
 
   create_table "questions", force: :cascade do |t|
@@ -31,7 +54,7 @@ ActiveRecord::Schema.define(version: 2021_08_22_094352) do
     t.index ["user_id"], name: "index_questions_on_user_id"
   end
 
-  create_table "questions_tests", id: false, force: :cascade do |t|
+  create_table "questions_tests", force: :cascade do |t|
     t.bigint "question_id", null: false
     t.bigint "test_id", null: false
   end
@@ -66,7 +89,10 @@ ActiveRecord::Schema.define(version: 2021_08_22_094352) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "answer_options", "questions"
   add_foreign_key "answers", "questions"
+  add_foreign_key "assignee_answers", "questions"
+  add_foreign_key "assignee_answers", "test_assignments"
   add_foreign_key "questions", "users"
   add_foreign_key "test_assignments", "tests"
   add_foreign_key "tests", "users"

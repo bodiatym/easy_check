@@ -11,4 +11,5 @@ Rails.application.routes.draw do
   resources :questions
   resources :tests
   resources :test_assignments
+  resources :answer_options_assignee_answers, only: [:create]
 end
