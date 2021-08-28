@@ -10,10 +10,6 @@ module Users
       render :show
     end
 
-    def edit
-      @users_profile = Users::Profile.find_by(user_id: params[:id])
-    end
-
     private
 
     def set_users_profile
