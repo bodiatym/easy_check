@@ -23,7 +23,7 @@
 class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable#,
-         # :confirmable
+         :confirmable
 
   after_update :send_password_change_email, if: :needs_password_change_email?
   after_save :build_users_profile

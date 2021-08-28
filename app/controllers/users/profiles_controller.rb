@@ -3,19 +3,15 @@
 module Users
   class ProfilesController < BaseController
     before_action :set_users_profile
-    before_action :authenticate_user!, except: [:index, :show]
+    before_action :authenticate_user!
 
-    def show
-      # @profile = Users::Profile.find(profile_params)
+    def update
+      Users::Update.new(@users_profile, users_profile_params).call
+      render :show
     end
 
     def edit
-      @profile = Profile.find(params[:id])
-    end
-
-    def update
-      @users_profile.update(users_profile_params)
-      redirect_to root_path
+      @users_profile = Users::Profile.find_by(user_id: params[:id])
     end
 
     private
