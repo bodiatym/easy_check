@@ -95,7 +95,10 @@ ActiveRecord::Schema.define(version: 2021_08_24_184713) do
     t.index ["user_id"], name: "index_users_profiles_on_user_id"
   end
 
+  add_foreign_key "answer_options", "questions"
   add_foreign_key "answers", "questions"
+  add_foreign_key "assignee_answers", "questions"
+  add_foreign_key "assignee_answers", "test_assignments"
   add_foreign_key "questions", "users"
   add_foreign_key "test_assignments", "tests"
   add_foreign_key "tests", "users"
