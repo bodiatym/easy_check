@@ -4,5 +4,11 @@ class ApplicationController < ActionController::Base
   include Pagy::Backend
   include ErrorHandling
 
-  before_action :authenticate_user!
+  private
+
+  def user_signed_in?
+    current_user.present?
+  end
+
+  helper_method :user_signed_in?
 end

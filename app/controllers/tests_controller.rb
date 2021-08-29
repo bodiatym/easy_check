@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class TestsController < ApplicationController
+class TestsController < BaseController
   def index
     @pagy, @tests = pagy(Test.order(created_at: :desc))
     @tests = current_user.tests.order(created_at: :desc)
