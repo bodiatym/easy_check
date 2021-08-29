@@ -10,15 +10,7 @@
     </select>
 
   <div id='answer-fields'>
-    <% if @question.answers_count == 1 %>
-      <%= render partial: 'single_answer', locals: { f: f } %>
-    <% elsif @question.answers_count == 2 %>
-      <%= render partial: 'double_answer', locals: { f: f } %>
-    <% elsif @question.answers_count == 3 %>
-      <%= render partial: 'tripple_answer', locals: { f: f } %>
-    <% else %>
-      <%= render partial: 'single_answer', locals: { f: f } %>
-    <% end %>
+    <%= render partial: 'single_answer', locals: { f: f } %>
   </div>
 
   <div class="form-group">

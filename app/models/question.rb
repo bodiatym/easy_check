@@ -4,13 +4,12 @@
 #
 # Table name: questions
 #
-#  id            :bigint           not null, primary key
-#  answer_type   :string           not null
-#  answers_count :integer          default(1)
-#  body          :string           not null
-#  created_at    :datetime         not null
-#  updated_at    :datetime         not null
-#  user_id       :bigint
+#  id          :bigint           not null, primary key
+#  answer_type :string           not null
+#  body        :string           not null
+#  created_at  :datetime         not null
+#  updated_at  :datetime         not null
+#  user_id     :bigint
 #
 # Indexes
 #

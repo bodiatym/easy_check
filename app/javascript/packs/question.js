@@ -10,3 +10,17 @@ $(document).on('turbolinks:load', function () {
       }
   });
 });
+
+$(function () {
+    $("#add-new-answer").click(function (e) {
+        e.preventDefault();
+        $("#dynamic-inputs").append($("#answer-input").html());
+    });
+});
+
+$(function (){
+    $("#remove-answer").click(function (e) {
+        e.preventDefault();
+        $("#dynamic-inputs").children().last().remove();
+    });
+});

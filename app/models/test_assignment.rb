@@ -7,6 +7,7 @@
 #  id              :bigint           not null, primary key
 #  assignee_email  :string           not null
 #  expiration_time :string           not null
+#  status          :string           default("sent")
 #  test_id         :bigint
 #
 # Indexes
