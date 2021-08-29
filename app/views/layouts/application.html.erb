@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>EasyCheck</title>
+    <title><%= full_title(yield(:page_title)) %></title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
@@ -12,30 +12,49 @@
   </head>
 
   <body>
-      <header>
-        <nav class="navbar">
-          <div class="container-fluid">
-            <a class="navbar-brand" href="<%= root_path %>">
-              <img src="<%= asset_path('logo2.jpeg') %>" width="30" height="24" class="d-inline-block align-text-top">
-              Easy Check
-            </a>
-            <ul class="nav justify-content-center nav-pills">
-              <li class="nav-item">
-                <a class="nav-link" href="<%= new_user_session_path %>">Sign in</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="<%= new_user_registration_path %>">Sign up</a>
-              </li>
+    <header>
+      <nav class="nav navbar navbar-expand-lg navbar-light bg-light container-fluid">
+        <div class="container">
+          <a class="navbar-brand" href="<%= root_path %>">
+            <img src="<%= asset_path('logo2.jpeg') %>" width="30" height="24" class="d-inline-block align-text-top">
+            Easy Check
+          </a>
+          <% if user_signed_in? %>
+            <div class="navbar-nav">
+              <a class="nav-item nav-link" href="<%= test_assignments_path %>">Test Assignments</a>
+              <a class="nav-item nav-link" href="<%= tests_path %>">Tests</a>
+              <a class="nav-item nav-link" href="<%= questions_path %>">Questions</a>
+            </div>
+            <ul class="navbar-nav navbar-right">
+                <li>
+                  <a class="nav-link" href="<%= destroy_user_session_path %>">Log Out</a>
+                </li>
             </ul>
-          </div>
-        </nav>
-        <br>
-      </header>
-    </div>
+          <% else %>
+            <ul class="navbar-nav navbar-right">
+                <li class="nav-item ">
+                  <a class="nav-link" href="<%= new_user_session_path %>">Sign in</a>
+                </li>
+                <li>
+                  <a class="nav-link" href="<%= new_user_registration_path %>">Sign up</a>
+                </li>
+            </ul>
+          <% end %>
+        
+        </div>
+      </nav>
+      <br>
+    </header>
+    
     <div class="container">
       <p class="notice"><%= notice %></p>
       <p class="alert"><%= alert %></p>
       <%= yield %>
+    </div>
+    
+    <br>
+    <div class="footer">
+      <p>all rights reserved 2021</p>
     </div>
   </body>
 </html>
