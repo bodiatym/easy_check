@@ -1,1 +1,25 @@
+
 <% provide :page_title, 'Edit Tests' %>
+<h3 class='inline-block'>Edit test</h3> 
+
+<div class="mt-40">
+  <%= form_for(:test , url: test_path(@test),method: :patch) do |form|%>
+    <%= form.hidden_field :user_id, value: current_user.id %>
+    <%= form.hidden_field :test_id, value: @test.id %>
+    <%= form.label :name, value: 'Name' %>
+    <%= form.text_area :name, class: 'form-control', rows: 1 %>
+    
+    <%= form.label :question, 'Questions:', :class => "control-label" %><br>
+    <%= render partial: 'questions/question_preview', collection: @test.questions, as: :question %>
+    <%= form.collection_check_boxes :question_ids,Question.all, :id, :body %>
+   
+    
+    <div class="form-group">
+      <%= form.submit 'Submit', class: "btn btn-success ", data: {disable_with: 'wait...'} %>
+    </div>
+  <% end %>
+</div>
+
+
+
+
