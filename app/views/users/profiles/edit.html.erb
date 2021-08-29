@@ -1,0 +1,14 @@
+<div class="container">
+  <h1>Update my profile</h1>
+</div>
+
+<%= form_for :users_profile, url: users_profile_path, method: :patch do |f| %>
+    <div class="form-group">
+      First name: <%= f.text_field :first_name %>
+      Last name : <%= f.text_field :last_name %>
+    </div>
+
+    <div class="form-group">
+      <%= f.submit 'Save', class: "btn btn-primary save-button" %>
+    </div>
+<% end %>
