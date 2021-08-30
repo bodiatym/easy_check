@@ -1,7 +1,17 @@
 <% provide :page_title, 'Question' %>
+<br>
+<div class="container align-text-center ">
+  <h1><%= @question.body %></h1>
 
-<h1><%= @question.body %></h1>
-
-<p>
-  <%= @question.answer_type %>
-</p>
+  <h3>Type Question: <%= @question.answer_type %></h3>
+  <br>
+  <% @question.answer_options.each do |answer| %>
+    <table>
+      <th>
+        <td>
+          <h5>- <%= answer.body %></h5>
+        </td> 
+      </th>
+    </table>
+  <% end %>
+</div>
