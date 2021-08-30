@@ -8,8 +8,7 @@ class QuestionsController < BaseController
   end
 
   def new
-    @question = Question.new(answers_count: 1)
-    @question.assign_attributes(answers_count: params[:answers_count].to_i)
+    @question = Question.new
   end
 
   def show; end
@@ -46,7 +45,7 @@ class QuestionsController < BaseController
 
   def question_params
     params.require(:question).permit(
-      :body, :answer_type, :answers_count, answers_attributes: %i[body]
+      :body, :answer_type, answers_attributes: %i[body]
     )
   end
 
