@@ -2,12 +2,13 @@
 
 module Tests
   class Create
-    def self.call(params)
-      test = Test.new(params)
+    def initialize(test_params, current_user)
+      @test_params = test_params
+      @current_user = current_user
+    end
 
-      test.save
-
-      test
+    def call
+      @current_user.tests.create(@test_params)
     end
   end
 end

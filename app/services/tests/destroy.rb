@@ -2,8 +2,12 @@
 
 module Tests
   class Destroy
-    def self.call(test)
-      test.delete
+    def initialize(test)
+      @test = test
+    end
+
+    def call
+      @test.delete
     end
   end
 end

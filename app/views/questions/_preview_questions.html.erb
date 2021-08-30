@@ -1,9 +1,10 @@
-<table class="table table-bordered table-hover">
+<br>
+<table class="table table-hover">
   <thead>
-    <tr class="active" style="background-color: gray">
+    <tr>
       <th>Name</th>
       <th>Type</th>
-      <th>Actions</th>
+      <th class="u-align-center">Actions</th>
     </tr>
   </thead>
   <tbody>
@@ -11,10 +12,12 @@
     <tr>
       <td><%= question.body %></td>
       <td><%= question.answer_type %></td>
-      <td>
-        <%= link_to 'Show', question_path(question) %>
-        <%= link_to 'Edit', edit_question_path(question) %>
-        <%= link_to 'Remove', question_path(question), method: :delete, data: {confirm: 'Are you sure?'} %>
+      <td class="u-align-center">
+        <div class="btn-group" role="group" aria-label="Basic outlined example">
+          <a href="<%= question_path(question) %>" class="btn btn-outline-info">Show</a>
+          <a href="<%= edit_question_path(question) %>" class="btn btn-outline-secondary">Edit</a>
+          <a data-confirm="Are you sure?" data-method="delete" href="<%= question_path(question) %>" class="btn btn-outline-danger">Delete</a>  
+        </div>
       </td>
     </tr>
     <% end %>

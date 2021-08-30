@@ -1,60 +1,55 @@
 # frozen_string_literal: true
 class TestsController < ApplicationController
-    def index
-    @pagy, @tests = pagy(Test.order(created_at: :desc))
-    @tests = current_user.tests.order(created_at: :desc)
-    @users = User.all.except(current_user)
-    end
-  
-    def create
-      test = Tests::Create.call(test_params)
-  
-      if test.persisted?
-        redirect_to tests_path,
-                    flash: { notice: 'Test was successfully created.' }
-      else
-        redirect_to test_path,
-                    flash: { error: test.errors.full_messages.to_sentence }
-      end
-    end
+  def index
+  @pagy, @tests = pagy(Test.order(created_at: :desc))
+  @tests = current_user.tests.order(created_at: :desc)
+  @users = User.all.except(current_user)
+  end
 
-    def new
-      @test = Test.new
-    end
+  def show
+    redirect_to tests_path
+  end
 
-    def update
-      if test.update(test_params)
-        redirect_to tests_path
-      else
-        redirect_to test_path,
-                    flash: { error: test.errors.full_messages.to_sentence }
-      end
-    end
+  def new
+    @test = Test.new
+  end
 
-    def edit
-      test
-      @questions = Question.all
-    end
-    def show
+  def create
+    if Tests::Create.new(test_params, current_user).call
       redirect_to tests_path
+    else
+      render :new
     end
+  end
+
+  def edit
+    test
+    @questions = Question.all
+  end
+
+  def update
+    if Tests::Update.new(test, test_params).call
+      redirect_to tests_path
+    else
+      render :edit
+    end
+  end
 
   def destroy
-    if Tests::Destroy.call(test)
+    if Tests::Destroy.new(test).call
       redirect_to tests_path
     else
       render status: :forbidden
     end
   end
 
-    private
-  
-    def test_params
-      params.permit(:name, :user_id, question_ids:[])
-    end
+  private
 
-    def test
-        @test ||= Test.find(params[:id])
-    end
+  def test_params
+    params.require(:test).permit(:name, :user_id, question_ids:[])
+  end
 
+  def test
+    @test ||= Test.find(params[:id])
+  end
 end
