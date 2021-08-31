@@ -3,6 +3,8 @@
 class AnswerOptionsAssigneeAnswersController < ApplicationController
 
   def create
+    binding.pry
+    railse 1
     assignee_answer = AssigneeAnswers::Create.new(assignee_answer_params).call
   end
 
