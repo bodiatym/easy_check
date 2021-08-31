@@ -1,12 +1,18 @@
-<h4>Add new Test</h4>
-<%= form_with(model: @test, url: tests_path) do |form| %>
-  <%= form.hidden_field :user_id, value: current_user.id %>
-  <%= form.label :name, value: 'Name' %>
-  <%= form.text_area :name, class: 'form-control', rows: 1 %>
-  <%= form.label :question, 'Questions:', :class => "control-label" %><br>
-  <%= form.collection_check_boxes :question_ids,Question.all, :id, :body %>
+<%= form_for(@test, html: {role: "form"}) do |form|%>
+  <%= form.label :name, value: 'Test' %>
+  <%= form.text_field :name, class: "form-control mb-20" %>
 
-  <div class="d-flex justify-content-end mt-2">
-    <%= form.button :Create, type: :submit, class: 'btn btn-info' %>
+  <ul class="list-group list-group-flush">
+    <%= hidden_field_tag "test[question_ids][]", nil %>
+    <% Question.all.each do |question| %>
+      <li class="list-group-item list-group-item">
+          <%= check_box_tag "test[question_ids][]", question.id, @test.question_ids.include?(question.id), id: dom_id(question) %>
+          <%= label_tag dom_id(question), question.body %><br>
+      </li>
+    <% end %>
+  </ul>
+
+  <div class="form-group">
+    <%= form.submit 'Create', class: "btn btn-success btn-sm mt-10", data: {disable_with: 'wait...'} %>
   </div>
 <% end %>

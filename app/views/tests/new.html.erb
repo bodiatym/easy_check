@@ -1,5 +1,8 @@
-
 <% provide :page_title, 'New Test' %>
-<div class="col-md-6">
-  <%= render 'tests/form' %>
+
+<h3 class='inline-block'>New test</h3> 
+<a href="<%= tests_path %>", class="btn btn-secondary back-button">Back</a>
+
+<div class="mt-40">
+  <%= render 'form' %>
 </div>
