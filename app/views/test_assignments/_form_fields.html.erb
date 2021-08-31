@@ -12,7 +12,7 @@
   </select>
 
   <%= f.label :expiration_time, value: 'Expiration time' %>
-  <p><%= f.time_field :expiration_time, value: @test_assignment.expiration_time&.strftime("%H:%M") %></p>
+  <p><%= f.datetime_field :expiration_time, value: @test_assignment.expiration_time %></p>
 
   <div class="form-group">
     <%= f.submit 'Assign', class: "btn btn-success btn-sm mt-10", data: {disable_with: 'wait...'} %>

@@ -3,9 +3,12 @@
 class TestsController < ApplicationController
   helper_method :test, :test_assignment
   def index
-    @pagy, @tests = pagy(Test.order(created_at: :desc))
-    @tests = current_user.tests.order(created_at: :desc)
-    @users = User.all.except(current_user)
+
+    @pagy, @tests = pagy(current_user.tests.order(created_at: :desc))
+    #binding.pry
+    #@tests = current_user.tests.order(created_at: :desc)
+    #@users = User.all.except(current_user)
+
   end
 
   def show; end

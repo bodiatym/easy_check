@@ -7,7 +7,7 @@ module TestAssignments
     end
 
     def call
-      TestAssignment.create(@test_assignment_params)
+      TestAssignment.create!(@test_assignment_params)
     end
   end
 end
