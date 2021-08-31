@@ -1,0 +1,21 @@
+<% provide :page_title, 'Test Assignment' %>
+
+<div class="container text-center">  
+  <h1><%= @test_assignment.test.name %></h1>
+  <br>
+</div>
+
+<div class="form-group">
+  <%= form_for(:assignee_answers,
+                url: assignee_answers_path,
+                method: :get,
+                html: { role: 'form'}) do |f| %>
+    <% @test_assignment.test.questions.each do |question| %><br>
+        <strong><%= question.body %></strong>
+        <strong><%= question.assignee_answers %></strong>
+        <% question.includes([@assignee_answers]).each do |assignee_answer| %>
+          <% assignee_answer.body %>
+        <% end %>
+    <% end %>
+  <% end %>
+</div>
