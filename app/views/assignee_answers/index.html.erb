@@ -13,8 +13,8 @@
     <% @test_assignment.test.questions.each do |question| %><br>
         <strong><%= question.body %></strong>
         <strong><%= question.assignee_answers %></strong>
-        <% question.includes([@assignee_answers]).each do |assignee_answer| %>
-          <% assignee_answer.body %>
+        <% question.assignee_answers.each do |assignee_answer| %>
+          <td><%= label :assignee_answer, answer_option.body %></td>
         <% end %>
     <% end %>
   <% end %>

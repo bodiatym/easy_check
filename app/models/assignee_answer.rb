@@ -5,9 +5,9 @@
 # Table name: assignee_answers
 #
 #  id                 :bigint           not null, primary key
-#  answer_option      :integer
 #  body               :text
 #  value              :integer
+#  answer_option_id   :integer
 #  question_id        :bigint
 #  test_assignment_id :bigint
 #
