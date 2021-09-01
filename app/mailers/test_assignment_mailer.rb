@@ -5,6 +5,6 @@ class TestAssignmentMailer < ApplicationMailer
 
   def test_assignment_email(id)
     @test_assignment = TestAssignment.find(id)
-    mail(to: @test_assignment.assignee_email, subject: "Here is your test!")
+    mail(to: @test_assignment.assignee_email, subject: "Here is your test from 'Easy Check'!")
   end
 end
