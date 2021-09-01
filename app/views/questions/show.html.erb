@@ -1,17 +1,15 @@
 <% provide :page_title, 'Question' %>
 <br>
-<div class="container align-text-center ">
+<div class="container">
   <h1><%= @question.body %></h1>
 
   <h3>Type Question: <%= @question.answer_type %></h3>
   <br>
-  <% @question.answer_options.each do |answer| %>
-    <table>
-      <th>
-        <td>
-          <h5>- <%= answer.body %></h5>
-        </td> 
-      </th>
-    </table>
-  <% end %>
+  <ul class="list-group list-group-flush">
+      <% @question.answer_options.each do |answer| %>
+      <li class="list-group-item list-group-item">
+        <%= answer.body %>
+      </li>
+      <% end %>
+  </ul>
 </div>

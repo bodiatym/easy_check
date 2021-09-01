@@ -1,3 +1,13 @@
+<% if @test.errors.full_messages.any? %>
+  <div class="alert alert-danger">
+    <ul>
+      <% @test.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
+
 <% provide :page_title, 'New Test' %>
 
 <h3 class='inline-block'>New test</h3> 

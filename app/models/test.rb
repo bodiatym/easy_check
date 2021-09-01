@@ -20,6 +20,7 @@
 #
 class Test < ApplicationRecord
   belongs_to :user
-  has_many :questions_tests, dependent: :nullify
+  has_many :test_assignments, dependent: :restrict_with_error
+  has_many :questions_tests, dependent: :destroy
   has_many :questions, through: :questions_tests
 end

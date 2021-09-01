@@ -7,7 +7,11 @@ module Tests
     end
 
     def call
-      @test.delete
+      if @test.test_assignments.any?
+        false
+      else
+        @test.destroy
+      end
     end
   end
 end

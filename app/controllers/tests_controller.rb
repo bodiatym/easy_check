@@ -1,14 +1,14 @@
 # frozen_string_literal: true
+
 class TestsController < ApplicationController
+  helper_method :test, :test_assignment
   def index
-  @pagy, @tests = pagy(Test.order(created_at: :desc))
-  @tests = current_user.tests.order(created_at: :desc)
-  @users = User.all.except(current_user)
+    @pagy, @tests = pagy(Test.order(created_at: :desc))
+    @tests = current_user.tests.order(created_at: :desc)
+    @users = User.all.except(current_user)
   end
 
-  def show
-    redirect_to tests_path
-  end
+  def show; end
 
   def new
     @test = Test.new
@@ -36,17 +36,19 @@ class TestsController < ApplicationController
   end
 
   def destroy
-    if Tests::Destroy.new(test).call
-      redirect_to tests_path
+    Tests::Destroy.new(test).call
+    if @test.destroy
+      flash[:success] = 'Test successfully deleted.'
     else
-      render status: :forbidden
+      flash[:danger] = 'This test cannot be deleted because it is used in Test Assignment.'
     end
+    redirect_to tests_path
   end
 
   private
 
   def test_params
-    params.require(:test).permit(:name, :user_id, question_ids:[])
+    params.require(:test).permit(:name, :user_id, question_ids: [])
   end
 
   def test

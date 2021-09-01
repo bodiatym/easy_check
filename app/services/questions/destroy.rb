@@ -7,7 +7,11 @@ module Questions
     end
 
     def call
-      @question.destroy
+      if @question.tests.any?
+        false
+      else
+        @question.destroy
+      end
     end
   end
 end
