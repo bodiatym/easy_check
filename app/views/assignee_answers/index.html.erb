@@ -12,10 +12,10 @@
                 html: { role: 'form'}) do |f| %>
     <% @test_assignment.test.questions.each do |question| %><br>
         <strong><%= question.body %></strong>
-        <strong><%= question.assignee_answers %></strong>
-        <% question.assignee_answers.each do |assignee_answer| %>
-          <td><%= label :assignee_answer, answer_option.body %></td>
+        <% @assignee_answers.each do |assignee_answer| %>
+        <label for="<%= "assignee_answers_value_#{answer_option.id}" %>"><%= assignee_answer.body %></label>
         <% end %>
     <% end %>
   <% end %>
+  <%= params[:assignee_answer].inspect %>
 </div>

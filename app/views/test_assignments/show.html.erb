@@ -6,7 +6,7 @@
 </div>
 
 <div class="form-group">
-  <%= form_for(:assignment_result,
+  <%= form_for(:assignee_answer,
                 url: answer_options_assignee_answers_path,
                 method: :post,
                 html: { role: 'form'}) do |f| %>
@@ -27,7 +27,7 @@
             <%= question.body %>
             <% question.answer_options.each do |answer_option| %>
               <div class="block">
-                <%= f.radio_button "#{question.id}[#{answer_option.id}][value]", answer_option.correct, {id: "assignment_result_value_#{answer_option.id}"} %>
+                <%= f.radio_button "#{question.id}[#{answer_option.id}][value]", answer_option.correct?, {id: "assignment_result_value_#{answer_option.id}"} %>
                 <label for="<%= "assignment_result_value_#{answer_option.id}" %>"><%= answer_option.body %></label>
               </div> 
             <% end %>
@@ -38,14 +38,14 @@
               <%= question.body %>
               <% question.answer_options.each do |answer_option| %>
                 <div class="block">
-                  <%= f.check_box :value, name: "assignment_result[#{question.id}][#{answer_option.id}][value]", id: "assignment_result_value_#{answer_option.id}" %>
-                  <label for="<%= "assignment_result_value_#{answer_option.id}" %>"><%= answer_option.body %></label>
+                  <%= f.check_box :value, name: "assignee_answer[#{question.id}][#{answer_option.id}][value]", id: "assignee_answer_value_#{answer_option.id}" %>
+                  <label for="<%= "assignee_answer_value_#{answer_option.id}" %>"><%= answer_option.body %></label>
                 </div> 
               <% end %>
             </div>  
           <!--% end %-->
         <% else %>
-          <%= fields_for "assignment_result[#{question.id}]" do |ff| %>
+          <%= fields_for "assignee_answer[#{question.id}]" do |ff| %>
             <div class="form-group">
               <label for="<%= "answer_#{question.id}" %>"><%= question.body %></label>
               <%= ff.text_area(:body, id: "answer_#{question.id}") %>
