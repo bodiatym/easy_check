@@ -18,6 +18,7 @@ class TestAssignmentsController < BaseController
   def create
     test_assignment = TestAssignments::Create.new(test_assignment_params).call
     TestAssignmentMailer.test_assignment_email(test_assignment.id).deliver
+    redirect_to test_assignments_path
   end
 
   private

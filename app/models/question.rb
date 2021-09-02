@@ -20,7 +20,6 @@
 #  fk_rails_...  (user_id => users.id)
 #
 class Question < ApplicationRecord
-  #has_many :answers, dependent: :destroy
   has_many :questions_tests, dependent: :restrict_with_error
   has_many :tests, through: :questions_tests
   has_many :assignee_answers, dependent: :destroy
