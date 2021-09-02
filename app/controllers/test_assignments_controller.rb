@@ -17,7 +17,6 @@ class TestAssignmentsController < BaseController
 
   def create
     test_assignment = TestAssignments::Create.new(test_assignment_params).call
-    binding.pry
     TestAssignmentMailer.test_assignment_email(test_assignment.id).deliver
   end
 
