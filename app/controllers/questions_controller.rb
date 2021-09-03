@@ -34,18 +34,20 @@ class QuestionsController < BaseController
   end
 
   def destroy
-    if Questions::Destroy.new(question).call
-      redirect_to questions_path
+    Questions::Destroy.new(question).call
+    if @question.destroy
+      flash[:success] = 'Question successfully deleted.'
     else
-      render status: :forbidden
+      flash[:danger] = 'This question cannot be deleted because it is used in Test'
     end
+    redirect_to questions_path
   end
 
   private
 
   def question_params
     params.require(:question).permit(
-      :body, :answer_type, answers_attributes: %i[body]
+      :body, :answer_type, answer_options_attributes: %i[body]
     )
   end
 

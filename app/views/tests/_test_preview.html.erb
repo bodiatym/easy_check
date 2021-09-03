@@ -1,14 +1,22 @@
-<div class="card mb-3" id="test-<%= test.id %>">
-  <div class="card-body">
-    <h5 class="card-title">
-      </strong>
-      <%= test.name %>
-      <small>
-        | <%= link_to 'Edit', edit_test_path(test.id), class: 'card-link'%>
-      </small>
-      <small>
-        | <%= link_to 'Delete', test, method: :delete %>
-      </small>
-    </h5>
-  </div>
-</div>
+<br>
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th class="u-align-center">Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @tests.each do |test| %>
+    <tr>
+      <td><%= test.name %></td>
+      <td class="u-align-center">
+        <div class="btn-group" role="group" aria-label="Basic outlined example">
+          <a href="<%= edit_test_path(test) %>" class="btn btn-outline-secondary">Edit</a>
+          <a data-confirm="Are you sure?" data-method="delete" href="<%= test_path(test) %>" class="btn btn-outline-danger">Delete</a>  
+        </div>
+      </td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>

@@ -1,7 +1,8 @@
 <%= render partial: 'navbar_test_assignments' %>
-<table class="table table-bordered table-hover">
+<br>
+<table class="table table-hover">
   <thead>
-    <tr class="active gray-background">
+    <tr>
       <th>Test name</th>
       <th>Student email</th>
       <th>Status</th>
@@ -15,7 +16,7 @@
       <td><%= test_assignment.test.name %></td>
       <td><%= test_assignment.assignee_email %></td>
       <td><%= test_assignment.status %></td>
-      <td><%= link_to 'Test', test_assignment_path(id: test_assignment.id) %></td>
+      <td><a href="<%= test_assignment_path(id: test_assignment.id) %>" class="btn btn-outline-info">Test</a></td>
       <td><%= test_assignment.expiration_time %></td>
     </tr>
     <% end %>

@@ -1,29 +1,18 @@
+
 <% provide :page_title, 'Tests' %>
-
-<div class="row">
- <div class="col-md-6">
- <h3>
- <strong>
-   User tests
- </strong>
-</h3>
-    <h7>
-      <strong>
-        Tests count: <%= @tests.count %>
-      </strong>
-    </h7>
-
-    <hr>
-
-    <%= render partial: 'tests/test_preview', collection: @tests, as: :test %>
-    
-    <h6>
-      <strong>
-      <%= link_to 'Create New', new_test_path, class: 'card-link'%>
-      </strong>
-    </h6>
-  </div>  
-</div>
+<br>
+<nav class="navbar navbar-expand-lg navbar-light">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="<%= tests_path %>">Tests</a>
+    <div class="text=right">
+      <a href="<%= new_test_path %>" class ="btn btn-outline-primary">Add test</a>
+    </div>    
+  </div>
+</nav>
+<br>
+<body>
+  <%= render partial: 'test_preview' %>
+</body>
 <footer>
   <div class="pagination justify-content-center">
     <%== pagy_bootstrap_nav @pagy %>

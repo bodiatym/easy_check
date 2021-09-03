@@ -9,8 +9,7 @@ class TestAssignmentsController < BaseController
     @pagy, @test_assignments = pagy(test_assignments)
   end
 
-  def show
-  end
+  def show; end
 
   def new
     @test_assignment = TestAssignment.new

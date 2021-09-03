@@ -2,8 +2,16 @@
 
 module Tests
   class Destroy
-    def self.call(test)
-      test.delete
+    def initialize(test)
+      @test = test
+    end
+
+    def call
+      if @test.test_assignments.any?
+        false
+      else
+        @test.destroy
+      end
     end
   end
 end
