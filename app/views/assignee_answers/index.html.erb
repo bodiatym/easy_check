@@ -10,12 +10,16 @@
                 url: assignee_answers_path,
                 method: :get,
                 html: { role: 'form'}) do |f| %>
-    <% @test_assignment.test.questions.each do |question| %><br>
+    <% @test_assignment.test.questions.includes([:assignee_answers]).each do |question| %><br>
+      <div class="form-group">
         <strong><%= question.body %></strong>
-        <% @assignee_answers.each do |assignee_answer| %>
-        <label for="<%= "assignee_answers_value_#{answer_option.id}" %>"><%= assignee_answer.body %></label>
+        <br>
+        <% question.assignee_answers.each do |assignee_answer| %>
+        <label for="<%= "assignee_answers_value_#{assignee_answer.id}" %>">
+          <%= students_answer(assignee_answer, question) %>
+        </label>
         <% end %>
+      </div> 
     <% end %>
   <% end %>
-  <%= params[:assignee_answer].inspect %>
 </div>

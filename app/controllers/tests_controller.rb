@@ -5,9 +5,8 @@ class TestsController < ApplicationController
   def index
 
     @pagy, @tests = pagy(current_user.tests.order(created_at: :desc))
-    #binding.pry
-    #@tests = current_user.tests.order(created_at: :desc)
-    #@users = User.all.except(current_user)
+
+  end
 
   end
 

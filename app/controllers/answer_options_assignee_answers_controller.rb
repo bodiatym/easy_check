@@ -3,13 +3,12 @@
 class AnswerOptionsAssigneeAnswersController < ApplicationController
 
   def create
-    binding.pry
-    assignee_answer = AssigneeAnswers::Create.new(assignee_answer_params).call
+    AssigneeAnswers::Create.new(assignee_answer_params).call
   end
 
-  private 
+  private
 
   def assignee_answer_params
-    params.require(:assignee_answer).permit(:body, :value, :test_assignment_id, :question_id, :answer_option_id)
+    params.require(:assignee_answer).permit!
   end
 end

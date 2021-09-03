@@ -5,24 +5,16 @@
   <br>
 </div>
 
+
 <div class="form-group">
   <%= form_for(:assignee_answer,
                 url: answer_options_assignee_answers_path,
                 method: :post,
                 html: { role: 'form'}) do |f| %>
+    <%= f.hidden_field :test_assignment_id, :value => test_assignment.id %>
     <% questions.each do |question| %><br>
       <h4>
-        
         <% if question.answer_type_single? %>
-          <!--div class="form-group">
-            <strong><%= question.body %></strong>
-            <#% question.answer_options.each do |answer_option| %>
-              <div class="block">
-                <#%= f.radio_button "answer_option[#{question.id}]", answer_option.id %>
-                <#%= label :answer_option, answer_option.body %>
-              </div> 
-            <#% end %>
-          </div--> 
           <div class="form-group">
             <%= question.body %>
             <% question.answer_options.each do |answer_option| %>
@@ -33,17 +25,17 @@
             <% end %>
           </div>   
         <% elsif question.answer_type_multiple? %>
-          <!--%= fields_for "#{question.id}".to_sym do |ff| %-->
-            <div class="form-group">
-              <%= question.body %>
-              <% question.answer_options.each do |answer_option| %>
-                <div class="block">
-                  <%= f.check_box :value, name: "assignee_answer[#{question.id}][#{answer_option.id}][value]", id: "assignee_answer_value_#{answer_option.id}" %>
-                  <label for="<%= "assignee_answer_value_#{answer_option.id}" %>"><%= answer_option.body %></label>
-                </div> 
-              <% end %>
-            </div>  
-          <!--% end %-->
+          <div class="form-group">
+            <%= question.body %>
+            <% question.answer_options.each do |answer_option| %>
+              <div class="block">
+                <%= f.check_box :value, 
+                                name: "assignee_answer[#{question.id}][#{answer_option.id}][value]", 
+                                id: "assignee_answer_value_#{answer_option.id}" %>
+                <label for="<%= "assignee_answer_value_#{answer_option.id}" %>"><%= answer_option.body %></label>
+              </div> 
+            <% end %>
+          </div>  
         <% else %>
           <%= fields_for "assignee_answer[#{question.id}]" do |ff| %>
             <div class="form-group">
@@ -52,7 +44,6 @@
             </div>
           <% end %>
         <% end %>
-
       </h4>
     <% end %>
 
