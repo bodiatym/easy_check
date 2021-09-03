@@ -25,8 +25,8 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable,
          :confirmable
 
-  after_update :send_password_change_email, if: :needs_password_change_email?
   after_create :build_users_profile
+  after_update :send_password_change_email, if: :needs_password_change_email?
 
   has_many :questions, dependent: :nullify
   has_many :tests, dependent: :nullify

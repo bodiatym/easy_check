@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class TestAssignmentMailer < ApplicationMailer
   helper :application
   include Devise::Controllers::UrlHelpers
@@ -5,6 +7,10 @@ class TestAssignmentMailer < ApplicationMailer
 
   def test_assignment_email(id)
     @test_assignment = TestAssignment.find(id)
-    mail(to: @test_assignment.assignee_email, subject: "Here is your test!")
+    attachments['email.jpeg'] = {
+      data: File.read(Rails.root.join('app/assets/images/email.jpeg')),
+      mime_type: 'image/jpeg'
+    }
+    mail(to: @test_assignment.assignee_email, subject: "Here is your test from 'Easy Check'!")
   end
 end
