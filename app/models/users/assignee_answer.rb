@@ -21,9 +21,7 @@
 #  fk_rails_...  (question_id => questions.id)
 #  fk_rails_...  (test_assignment_id => test_assignments.id)
 #
-class AssigneeAnswer < ApplicationRecord
-  has_many :answer_options_assignee_answers, dependent: :nullify
-  has_many :answer_options, through: :answer_options_assignee_answers
+class TestAssignment < ApplicationRecord
   belongs_to :test_assignment
   belongs_to :question
 end

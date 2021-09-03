@@ -12,6 +12,7 @@ Rails.application.routes.draw do
   resources :tests
   resources :test_assignments
   resources :answer_options_assignee_answers, only: [:create]
+  resources :assignee_answers
 
   namespace :users do
     resources :profiles

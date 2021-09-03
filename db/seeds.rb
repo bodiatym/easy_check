@@ -1,4 +1,4 @@
-user = User.create(email: Faker::Internet.email, password: '123456')
+user = User.create(email: 'admin@gmail.com', password: '123456')
 user.confirm
 
 test_1 = Test.create(user_id: user.id, name: Faker::Name.name)

@@ -8,6 +8,7 @@
       <th>Status</th>
       <th>Sent link</th>
       <th>Expiration time</th>
+      <th>Student`s answers</th>
     </tr>
   </thead>
   <tbody>
@@ -18,6 +19,7 @@
       <td><%= test_assignment.status %></td>
       <td><a href="<%= test_assignment_path(id: test_assignment.id) %>" class="btn btn-outline-info">Test</a></td>
       <td><%= test_assignment.expiration_time %></td>
+      <td><a href="<%= assignee_answers_path(id: test_assignment.id) %>" class="btn btn-outline-info">Student`s answers</a></td>
     </tr>
     <% end %>
   </tbody>
